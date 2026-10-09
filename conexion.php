@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "parcialweb";
+$dbname = "mi_sitio";
 $username = "root"; // Usuario por defecto en WAMP
 $password = "";     // Contraseña por defecto en WAMP (vacía)
 
