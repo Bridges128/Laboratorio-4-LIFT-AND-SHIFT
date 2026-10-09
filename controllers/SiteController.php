@@ -11,11 +11,11 @@ class SiteController {
 
     public function manejarPeticion() {
         // Capturar sección actual
-        $seccion = isset($_GET['seccion']) ? $_GET['seccion'] : 'inicio';
+        $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : 'inicio';
         $mensaje_db = "";
 
         // Procesar formulario si es la sección contacto y viene por POST
-        if ($seccion === 'contacto' && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre'])) {
+        if ($url === 'contacto' && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre'])) {
             $nombre_contacto = trim($_POST['nombre']);
 
             if (!empty($nombre_contacto)) {
@@ -35,7 +35,7 @@ class SiteController {
         // Cargar los componentes visuales (Vistas)
         require_once 'views/header.php';
 
-        switch ($seccion) {
+        switch ($url) {
             case 'inicio':
                 require_once 'views/inicio.php';
                 break;

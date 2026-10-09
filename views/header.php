@@ -14,9 +14,9 @@
         <h1>Mi Primer Sitio Web</h1>
         <nav>
             <ul>
-                <li><a href="index.php?seccion=inicio">Inicio</a></li>
-                <li><a href="index.php?seccion=servicios">Servicios</a></li>
-                <li><a href="index.php?seccion=contacto">Contacto</a></li>
+                <li><a href="inicio">Inicio</a></li>
+                <li><a href="servicios">Servicios</a></li>
+                <li><a href="contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
