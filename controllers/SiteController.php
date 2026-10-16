@@ -12,23 +12,42 @@ class SiteController {
     public function manejarPeticion() {
         // Capturar sección actual
         $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : 'inicio';
-        $mensaje_db = "";
+        $mensaje_db = null;
 
-        // Procesar formulario si es la sección contacto y viene por POST
-        if ($url === 'contacto' && $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre'])) {
-            $nombre_contacto = trim($_POST['nombre']);
+        if ($url === 'contacto' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre_contacto = trim($_POST['nombre'] ?? '');
+            $correo_contacto = trim($_POST['correo'] ?? '');
+            $comentario_contacto = trim($_POST['comentario'] ?? '');
 
-            if (!empty($nombre_contacto)) {
+            if ($nombre_contacto === '' || $correo_contacto === '' || $comentario_contacto === '') {
+                $mensaje_db = [
+                    'tipo' => 'error',
+                    'texto' => 'Completa todos los campos para enviar tu mensaje.',
+                ];
+            } elseif (!filter_var($correo_contacto, FILTER_VALIDATE_EMAIL)) {
+                $mensaje_db = [
+                    'tipo' => 'error',
+                    'texto' => 'Escribe una dirección de correo válida.',
+                ];
+            } else {
                 $modelo = new ContactoModel($this->conexion);
-                $exito = $modelo->guardarContacto($nombre_contacto);
+                $exito = $modelo->guardarContacto(
+                    $nombre_contacto,
+                    $correo_contacto,
+                    $comentario_contacto
+                );
 
                 if ($exito) {
-                    $mensaje_db = "<p style='color: green; font-weight: bold;'>¡Mensaje guardado con éxito en la Base de Datos!</p>";
+                    $mensaje_db = [
+                        'tipo' => 'exito',
+                        'texto' => '¡Gracias! Tu mensaje quedó guardado en la base de datos.',
+                    ];
                 } else {
-                    $mensaje_db = "<p style='color: red;'>Error al guardar en la base de datos.</p>";
+                    $mensaje_db = [
+                        'tipo' => 'error',
+                        'texto' => 'No se pudo guardar el mensaje. Inténtalo de nuevo.',
+                    ];
                 }
-            } else {
-                $mensaje_db = "<p style='color: red;'>Por favor, escribe un nombre válido.</p>";
             }
         }
 
@@ -41,6 +60,9 @@ class SiteController {
                 break;
             case 'servicios':
                 require_once 'views/servicios.php';
+                break;
+            case 'gustos':
+                require_once 'views/gustos.php';
                 break;
             case 'contacto':
                 require_once 'views/contacto.php';

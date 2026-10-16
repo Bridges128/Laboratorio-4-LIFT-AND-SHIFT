@@ -1,18 +1,19 @@
 <?php
-$host = "localhost";
-$dbname = "mi_sitio";
-$username = "root"; // Usuario por defecto en WAMP
-$password = "";     // Contraseña por defecto en WAMP (vacía)
+$host = getenv('DB_HOST') ?: 'db-mysql';
+$dbname = getenv('DB_NAME') ?: 'db_proyecto_mvc';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASSWORD') ?: 'clave_secreta_nube';
 
 try {
-    // Creamos la conexión usando el objeto PDO
-    $conexion = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    
-    // Configuramos PDO para que lance excepciones en caso de errores
+    $conexion = new PDO(
+        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        $username,
+        $password,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    // Si hay un error de conexión, detiene el script y lo muestra
-    die("Error crítico de conexión: " . $e->getMessage());
+    error_log('Error de conexión a la base de datos: ' . $e->getMessage());
+    http_response_code(503);
+    exit('No fue posible conectar con la base de datos. Verifica que el servicio esté disponible.');
 }
-
-?>

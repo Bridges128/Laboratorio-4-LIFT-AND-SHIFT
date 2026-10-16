@@ -1,6 +1,6 @@
     </div> <!-- Cierre de #contenedor-principal -->
     <footer>
-        <p>&copy; <?php echo date("Y"); ?> Mi Empresa - Todos los derechos reservados.</p>
+        <p>&copy; <?= date('Y') ?> Mi espacio · Sitio personal</p>
     </footer>
 </body>
 </html>

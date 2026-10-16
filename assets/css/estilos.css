@@ -1,56 +1,267 @@
-/* assets/css/estilos.css */
-
-body { 
-    font-family: Arial, sans-serif; 
-    margin: 0; 
-    padding: 0; 
-    background-color: #fafafa; 
+:root {
+    color-scheme: light;
+    --tinta: #2b2b2b;
+    --tinta-suave: #55504a;
+    --pergamino: #f4ecd8;
+    --papel: #fbf7ec;
+    --borde: #39352e;
+    --linea: #9c927f;
+    --acento: #76552c;
+    --acento-oscuro: #51391d;
 }
 
-header { 
-    background-color: #2c3e50; 
-    color: white; 
-    padding: 20px; 
-    text-align: center; 
+* {
+    box-sizing: border-box;
 }
 
-nav ul { 
-    list-style-type: none; 
-    padding: 0; 
-    margin: 15px 0 0 0; 
-    display: flex; 
-    justify-content: center; 
-    gap: 20px; 
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--tinta);
+    background:
+        repeating-linear-gradient(0deg, rgb(83 63 32 / 2%) 0, rgb(83 63 32 / 2%) 1px, transparent 1px, transparent 4px),
+        var(--pergamino);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.65;
 }
 
-nav a { 
-    color: #ecf0f1; 
-    text-decoration: none; 
-    font-weight: bold; 
-    padding: 8px 16px; 
-    border-radius: 4px; 
-    transition: background 0.3s; 
+header {
+    padding: 1.75rem 1.5rem 1.2rem;
+    text-align: center;
+    background: var(--pergamino);
+    border-bottom: 3px double var(--borde);
 }
 
-nav a:hover { 
-    background-color: #34495e; 
-    color: #3498db; 
+.marca {
+    color: var(--tinta);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.4rem, 7vw, 4.5rem);
+    font-variant: small-caps;
+    font-weight: 700;
+    letter-spacing: 0.045em;
+    line-height: 1.1;
+    text-decoration: none;
 }
 
-#contenedor-principal { 
-    max-width: 900px; 
-    margin: 30px auto; 
-    padding: 30px; 
-    background-color: white; 
-    min-height: 350px; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-    border-radius: 8px; 
+.marca span {
+    color: var(--acento);
 }
 
-footer { 
-    background-color: #333; 
-    color: #bbb; 
-    text-align: center; 
-    padding: 15px; 
-    font-size: 14px; 
+.subtitulo {
+    margin: 0.5rem 0 1.1rem;
+    color: var(--tinta-suave);
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+nav {
+    padding-block: 0.65rem;
+    border-top: 1px solid var(--borde);
+    border-bottom: 1px solid var(--borde);
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 1.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    display: inline-block;
+    padding: 0.2rem 0.25rem;
+    color: var(--tinta);
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 160ms ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    color: var(--acento);
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+}
+
+#contenedor-principal {
+    width: min(960px, calc(100% - 2rem));
+    min-height: 390px;
+    margin: 1.75rem auto;
+    padding: clamp(1.35rem, 5vw, 3rem);
+    background: var(--papel);
+    border: 1px solid var(--borde);
+}
+
+h2 {
+    margin: 0;
+    color: var(--tinta);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+}
+
+.eyebrow {
+    margin: 0 0 0.55rem;
+    color: var(--acento);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.page-intro {
+    margin-bottom: 1.4rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--linea);
+}
+
+.hero {
+    max-width: 700px;
+    padding: 1rem 0;
+}
+
+.hero > p:not(.eyebrow),
+.page-intro > p:not(.eyebrow) {
+    max-width: 680px;
+    margin: 0.9rem 0 0;
+}
+
+.boton {
+    display: inline-block;
+    padding: 0.65rem 1rem;
+    color: var(--papel);
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--tinta);
+    border: 1px solid var(--tinta);
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.boton:hover,
+.boton:focus-visible {
+    color: var(--tinta);
+    background: var(--pergamino);
+}
+
+.lista-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lista-tarjetas li {
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
+    padding: 1.2rem;
+    background: var(--pergamino);
+    border: 1px solid var(--borde);
+    border-top: 3px double var(--borde);
+    box-shadow: 3px 3px 0 rgb(43 43 43 / 8%);
+}
+
+.lista-tarjetas strong {
+    padding-bottom: 0.55rem;
+    color: var(--tinta);
+    font-size: 1.1rem;
+    letter-spacing: 0.035em;
+    border-bottom: 1px solid var(--linea);
+}
+
+.lista-tarjetas span {
+    color: var(--tinta-suave);
+    font-size: 1rem;
+}
+
+.formulario {
+    display: grid;
+    gap: 0.65rem;
+    max-width: 620px;
+    margin-top: 1.5rem;
+}
+
+.formulario label {
+    margin-top: 0.45rem;
+    color: var(--tinta);
+    font-weight: 700;
+}
+
+.formulario input,
+.formulario textarea {
+    width: 100%;
+    padding: 0.75rem 0.85rem;
+    color: var(--tinta);
+    font: inherit;
+    background: var(--papel);
+    border: 1px solid var(--borde);
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+}
+
+.formulario textarea {
+    resize: vertical;
+}
+
+.formulario .boton {
+    justify-self: start;
+    margin-top: 0.65rem;
+}
+
+.alerta {
+    max-width: 620px;
+    margin: 1.25rem 0 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--borde);
+}
+
+.alerta--exito {
+    color: #263d25;
+    background: #e8eadb;
+}
+
+.alerta--error {
+    color: #702b24;
+    background: #f2e0d8;
+}
+
+footer {
+    padding: 1.1rem 1.5rem;
+    color: var(--tinta-suave);
+    text-align: center;
+    background: var(--pergamino);
+    border-top: 3px double var(--borde);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+@media (max-width: 520px) {
+    header {
+        padding-inline: 1rem;
+    }
+
+    #contenedor-principal {
+        margin-block: 1rem;
+    }
 }

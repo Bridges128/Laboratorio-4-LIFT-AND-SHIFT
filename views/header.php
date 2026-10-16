@@ -4,18 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maqueta Web Dinámica en PHP (MVC)</title>
+    <meta name="description" content="Sitio personal y formulario de contacto con persistencia en MySQL.">
+    <title>Mi espacio | Sitio personal</title>
     
     <!-- Vinculación del archivo CSS externo -->
     <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
     <header>
-        <h1>Mi Primer Sitio Web</h1>
+        <a class="marca" href="inicio">Mi espacio<span>.</span></a>
+        <p class="subtitulo">Un sitio personal construido con PHP y MVC</p>
         <nav>
             <ul>
                 <li><a href="inicio">Inicio</a></li>
                 <li><a href="servicios">Servicios</a></li>
+                <li><a href="gustos">Mis gustos</a></li>
                 <li><a href="contacto">Contacto</a></li>
             </ul>
         </nav>
